@@ -27,6 +27,7 @@ open class Cell(
     var eastNorth: Cell? = null
     var eastSouth: Cell? = null
     var linkedCell: Cell? = null
+    var moveCount: Int = -1
 
     private var visited: Boolean = false
 
@@ -46,17 +47,34 @@ open class Cell(
     fun link(nextCell: Cell?) {
         visited = true
         linkedCell = nextCell
+        nextCell?.markAsVisited(this)
     }
 
-    fun getPngCoords(cellSize: Int) : PngCoords {
+    private fun markAsVisited(cell: Cell) {
+        neighbours().forEach { neighbour ->
+            if (neighbour == cell) neighbour.visited = true
+        }
+    }
+
+    fun getCoords(cellSize: Float) : Coords {
         val halfDimen = cellSize / 2
-        return PngCoords(
+        return Coords(
             column * cellSize,
-            (column + 1) * cellSize,
             row * cellSize,
-            (row + 1) * cellSize,
             (column * cellSize) + halfDimen,
             (row * cellSize) + halfDimen
         )
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Cell)
+            return false
+        else {
+            if (other.row == this.row
+                && other.column == this.column)
+                return true
+        }
+        return false
     }
 }
