@@ -12,3 +12,8 @@ Knights tour on a standard chess board
 Knights tour on a 120 x 120 chess board
 
 ![Knights tour on a 120 x 120 chess board](https://raw.githubusercontent.com/csdodd/KnightsTour/master/img/120.png)
+
+
+An animated Knights Tour
+
+![Animated Knights Tour 16 x 16](https://raw.gishubusercontent.com/csdodd/KnightsTour/master/img/16.gif)
